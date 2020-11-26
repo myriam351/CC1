@@ -1,7 +1,20 @@
 R Notebook
 ================
 
-\#Installation Dada2
+  - [INSTALLATION DES “PACKAGE” POUR L’ANALYSE DES
+    DONNÉES](#installation-des-package-pour-lanalyse-des-données)
+  - [Installation Dada2](#installation-dada2)
+  - [Installation phyloseq](#installation-phyloseq)
+  - [Installation Sudo](#installation-sudo)
+  - [Installation gridExtra](#installation-gridextra)
+  - [Installation Cran\_packages](#installation-cran_packages)
+  - [Installation Deseq2](#installation-deseq2)
+  - [Installation Rmarkdown](#installation-rmarkdown)
+  - [Installation knitr](#installation-knitr)
+
+# INSTALLATION DES “PACKAGE” POUR L’ANALYSE DES DONNÉES
+
+# Installation Dada2
 
 ``` r
 library(ggplot2)
@@ -20,7 +33,7 @@ BiocManager::install("dada2")
 
     ## Old packages: 'cli', 'GenomeInfoDb', 'pillar'
 
-\#Installation phyloseq
+# Installation phyloseq
 
 ``` r
 library(phyloseq)
@@ -39,7 +52,7 @@ BiocManager::install("phyloseq")
 
     ## Old packages: 'cli', 'GenomeInfoDb', 'pillar'
 
-\#Installation Sudo
+# Installation Sudo
 
 ``` bash
 sudo apt-get install -y libglpk-dev
@@ -52,7 +65,7 @@ sudo apt-get install -y libglpk-dev
     ## libglpk-dev is already the newest version (4.65-2).
     ## 0 upgraded, 0 newly installed, 0 to remove and 28 not upgraded.
 
-\#Installation gridExtra
+# Installation gridExtra
 
 ``` r
 install.packages("gridExtra")
@@ -61,7 +74,7 @@ install.packages("gridExtra")
     ## Installing package into '/usr/local/lib/R/site-library'
     ## (as 'lib' is unspecified)
 
-\#Installation Cran\_packages
+# Installation Cran\_packages
 
 ``` r
 .cran_packages <- c( "shiny","miniUI", "caret", "pls", "e1071", "ggplot2", "randomForest", "dplyr", "ggrepel", "nlme", "devtools",
@@ -106,7 +119,7 @@ BiocManager::install(".bioc_packages")
 #biocLite(.bioc_packages[!.inst])}
 ```
 
-\#Installation Deseq2
+# Installation Deseq2
 
 ``` r
 BiocManager::install("DESeq2")
@@ -121,7 +134,7 @@ BiocManager::install("DESeq2")
 
     ## Old packages: 'cli', 'GenomeInfoDb', 'pillar'
 
-\#Installation Rmarkdown
+# Installation Rmarkdown
 
 ``` r
 install.packages("rmarkdown")
@@ -130,7 +143,7 @@ install.packages("rmarkdown")
     ## Installing package into '/usr/local/lib/R/site-library'
     ## (as 'lib' is unspecified)
 
-\#Installation knitr
+# Installation knitr
 
 ``` r
 install.packages("knitr")
@@ -138,5 +151,3 @@ install.packages("knitr")
 
     ## Installing package into '/usr/local/lib/R/site-library'
     ## (as 'lib' is unspecified)
-
-\#\#Installation des différents packages pour l’analyses des données
