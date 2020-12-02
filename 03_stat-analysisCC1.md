@@ -117,6 +117,8 @@ library(ggplot2); packageVersion("ggplot2")
 theme_set(theme_bw())
 ```
 
+### Commentaire : Ici on a utilisé theme\_set(theme\_bw()). Il s’agit de thèmes complets qui contrôlent tout l’affichage des données.
+
 ``` r
 samples.out <- rownames(seqtab.nochim)
 subject <- sapply(strsplit(samples.out, "D"), `[`, 1)
@@ -170,10 +172,13 @@ plot_richness(ps, x="Day", measures=c("Shannon", "Simpson"), color="When")
     ## We recommended that you find the un-trimmed data and retry.
 
 ![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
-\#\#\# Commentaire : Par exemple : on peut visualiser la diversité
-alpha. \#\#\# Interprétation: On observe qu’il n’y a pas de différence
-marquante en terme de diversité alpha entre les échantillons précoces et
-tardis.
+\#\#\# Commentaire : la fonction “plot\_richness” estime un certain
+nombre de mesures de la diversité alpha.Les mesures ont été effectué à
+partir des indices de Shannon et de Simpson.
+
+### Commentaire : Par exemple : on peut visualiser sur la figure, la mesure de l’alpha diversité en fonction des jours.
+
+### Commentaire : Interprétation: On observe qu’il n’y a pas de différence marquante en terme d’alpha diversité entre les échantillons précoces et tardis.
 
 ## Ordination
 
@@ -215,15 +220,16 @@ ord.nmds.bray <- ordinate(ps.prop, method="NMDS", distance="bray")
     ## Run 20 stress 0.08988953 
     ## *** Solution reached
 
+### Commentaire : Ici on a transformé les données en proportions appropriées pour les distances Bray-Curtis.
+
 ``` r
 plot_ordination(ps.prop, ord.nmds.bray, color="When", title="Bray NMDS")
 ```
 
 ![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
-\#\#\# Commentaire : Transformation des données en proportions
-appropriées pour les distances Bray-Curtis. On a ensuite fait de
-l’ordination (NMDS). Comme on peut le voir, l’ordination a effectué
-une séparation nette entre les échantillons précoces et tardifs.
+\#\#\# Commentaire : On a ensuite fait de l’ordination (NMDS). Comme on
+peut le voir sur le graphique, via l’ordination on a pu effectuer une
+séparation nette entre les échantillons précoces et tardifs.
 
 ## Bar plot
 
@@ -235,7 +241,10 @@ plot_bar(ps.top20, x="Day", fill="Family") + facet_wrap(~When, scales="free_x")
 ```
 
 ![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
-\#\#\# Commentaire : Rien de marquant ne ressort de la distribution
+\#\#\# Commentaire : En utilisant la fonction plot\_bar() on a créer
+rapidement et facilement un graphique informatif sur les différences
+d’abondance des taxons entre les échantillons d’un échantillon. Comme
+on peut le voir, rien de marquant ne ressort de la distribution
 taxonomique des 20 premières séquences pour expliquer la différenciation
 précoce-tardive.
 
@@ -255,7 +264,7 @@ ps
     ## tax_table()   Taxonomy Table:    [ 389 taxa by 6 taxonomic ranks ]
     ## phy_tree()    Phylogenetic Tree: [ 389 tips and 387 internal nodes ]
 
-### Commentaire : On récupéré les données des auteurs pour effectué la suite sur Phyloseq, étant donné qu’’il y a des différences entre les deux données (dont l’un qu’on a utilisé sur Dada2 et l’autre sur Phyloseq).
+### Commentaire : On récupéré les données des auteurs pour effectué la suite de l’analyse des données sur Phyloseq, étant donné qu’’il y a des différences entre les deux données (dont l’un qu’on a utilisé sur Dada2 et l’autre sur Phyloseq). On a alors 360 échantillons avec 389 taxons. On a également 6 rang taxonomique et 387 noeuds internes.
 
 ``` r
 rank_names(ps)
@@ -263,7 +272,7 @@ rank_names(ps)
 
     ## [1] "Kingdom" "Phylum"  "Class"   "Order"   "Family"  "Genus"
 
-### Commentaire : Ici on a affiché les rangs présents dans l’ensemble des données.
+### Commentaire : Ici on a affiché les rangs présents dans l’ensemble des données. On a utilisé la fonction rank\_names(), afin de déterminer plus facilement les rangs taxonomiques disponibles dans un objet de classe phyloseq.
 
 ``` r
 table(tax_table(ps)[, "Phylum"], exclude = NULL)
@@ -283,7 +292,7 @@ table(tax_table(ps)[, "Phylum"], exclude = NULL)
     ##                        <NA> 
     ##                           6
 
-### Commentaire : Ensuite, on a créer un tableau avec le nombre de caractéristiques pour chaque Phyla. Ainsi, on peut voir quelques Phyla qui présentent des caractéristiques.
+### Commentaire : Ensuite, on a créer un tableau avec le nombre de caractéristiques pour chaque Phyla. Ainsi, on peut voir quelques Phyla qui présentent des nombres de caractéristiques.
 
 ``` r
 ps <- subset_taxa(ps, !is.na(Phylum) & !Phylum %in% c("", "uncharacterized"))
@@ -299,7 +308,7 @@ prevdf = apply(X = otu_table(ps),
                FUN = function(x){sum(x > 0)})
 ```
 
-### Commentaire : Ici on a calculé la prévalence de chaque caractéristique, stocker sous forme de data.frame
+### Commentaire : Ici on a calculé la prévalence de chaque caractéristique, stocker sous forme de data.frame.
 
 ``` r
 prevdf = data.frame(Prevalence = prevdf,
@@ -331,7 +340,7 @@ plyr::ddply(prevdf, "Phylum", function(df1){cbind(mean(df1$Prevalence),sum(df1$P
 filterPhyla = c("Fusobacteria", "Deinococcus-Thermus")
 ```
 
-### Commentaire : On a définit les phyla pour les filtrer par la suite.
+### Commentaire : On a selectionné les phyla, tels que Fusobacteria" et “Deinococcus-Thermus”, pour les filtrer.
 
 ``` r
 ps1 = subset_taxa(ps, !Phylum %in% filterPhyla)
@@ -344,7 +353,7 @@ ps1
     ## tax_table()   Taxonomy Table:    [ 381 taxa by 6 taxonomic ranks ]
     ## phy_tree()    Phylogenetic Tree: [ 381 tips and 379 internal nodes ]
 
-### Commentaire : On a Filtré les entrées avec les Phylum non identifiés. On voit bien que les données on bien été filtrées en se référant aux données non filtrées :
+### Commentaire : On a Filtré les entrées avec les Phylum non identifiés. On voit bien que les données on bien été filtrées en se référant aux données non filtrées précédemments:
 
 ### otu\_table() OTU Table: \[ 232 taxa and 19 samples \]
 
@@ -386,7 +395,7 @@ keepTaxa = rownames(prevdf1)[(prevdf1$Prevalence >= prevalenceThreshold)]
 ps2 = prune_taxa(keepTaxa, ps)
 ```
 
-### Commentaire : On a exécuté le filtre de prévalence (soit de 5 %), en utilisant la fonction "prune\_taxa()\`.
+### Commentaire : On a exécuté le filtre de prévalence (soit de 5 %), en utilisant la fonction “prune\_taxa()”.
 
 ## Agglomerate taxa
 
@@ -402,15 +411,14 @@ length(get_taxa_unique(ps2, taxonomic.rank = "Genus"))
 ps3 = tax_glom(ps2, "Genus", NArm = TRUE)
 ```
 
-``` r
-h1 = 0.4
-ps4 = tip_glom(ps2, h = h1)
-```
+### Commentaire : On a fusionné des espèces qui ont la même taxonomie.
 
 ``` r
 h1 = 0.4
 ps4 = tip_glom(ps2, h = h1)
 ```
+
+### Commentaire : Ici en utilisant tip\_glom(), on a fait en sorte que toutes les pointes de l’arbre séparées par une distance cophénique inférieure à h seront agglomérées en un seul taxon.
 
 ``` r
 multiPlotTitleTextSize = 15
@@ -439,11 +447,13 @@ library(gridExtra)
     ## 
     ##     combine
 
+### Commentaire : on a chargé le package “gridExtra” via la fonction library.
+
 ``` r
 grid.arrange(nrow = 1, p2tree, p3tree, p4tree)
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
 \#\#\# Commentaire : Après comparaison des données, elles sont stockées
 sous forme d’objets de parcelle séparés (dont p2tree, p3tree, p4tree ).
 Ces derniers sont mis ensemble sous forme de graphique comme on peut le
@@ -485,13 +495,14 @@ plotAfter = plot_abundance(ps3ra,"")
 grid.arrange(nrow = 2,  plotBefore, plotAfter)
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-35-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-34-1.png)<!-- -->
 \#\#\# Commentaire: Ici nous avons tracés les valeurs obtenues
 précédemment avant et après la transformation. De ce fait, nous avons
 une comparaison des abondances initiales avec les données transformées.
 On a également combiné chaque parcelle en un seul graphique. Ainsi, la
 figure obtenue montre bien la comparaison des abondances initiales et
-des abondances relatives.
+des abondances relatives. Nous avons en abscisses le genre mâle/femelle
+des souris.
 
 ## Subset by taxonomy
 
@@ -500,10 +511,10 @@ psOrd = subset_taxa(ps3ra, Order == "Lactobacillales")
 plot_abundance(psOrd, Facet = "Genus", Color = NULL)
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-36-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-35-1.png)<!-- -->
 \#\#\# Commentaire : Dans le graphique ci-dessus on observe les
 abondances relatives de l’ordre taxonomique des “Lactobacillales”, qui
-sont regroupés par les genres mâle/femelle de l’hôte.
+sont regroupés par les genres mâle/femelle des souris.
 
 ## Preprocessing
 
@@ -511,17 +522,19 @@ sont regroupés par les genres mâle/femelle de l’hôte.
 qplot(sample_data(ps)$age, geom = "histogram",binwidth=20) + xlab("age")
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-37-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-36-1.png)<!-- -->
 \#\#\# Commentaire : on a pu effectuer des analyses de données
 complémentaires. On peut voir que l’histogramme ci-dessus démontre que
 l’âge des souris se répartit en plusieurs groupes.
+
+### Commentaire : on a utilisé la fonction qplot(), qui est une façon pratique de créer plusieurs types de tracés différents en utilisant un schéma d’appel cohérent. Globalement, cette fonction facilite la création de graphiques complexes.
 
 ``` r
 qplot(log10(rowSums(otu_table(ps))),binwidth=0.2) +
   xlab("Logged counts-per-sample")
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-38-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-37-1.png)<!-- -->
 \#\#\# Commentaire : La figure suivante ci-dessus, présente un
 histogramme comparant les profondeurs de lectures brutes et transformées
 par log.
@@ -546,7 +559,7 @@ plot_ordination(pslog, out.wuf.log, color = "age_binned") +
   coord_fixed(sqrt(evals[2] / evals[1]))
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-39-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-38-1.png)<!-- -->
 \#\#\# Commentaire : Par la suite, nous examinons l’analyse des
 coordonnées principales (PCoA) avec la dissimilitude de Bray-Curtis sur
 la distance Unifrac pondérée. On peut voir que l’ordination des données
@@ -559,7 +572,7 @@ qplot(rel_abund[, 12], geom = "histogram",binwidth=0.05) +
   xlab("Relative abundance")
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-40-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-39-1.png)<!-- -->
 \#\#\# Commentaire : Dans le graphique ci-dessus, nous pouvons voir que
 les échantillons abbérants ont été majoritaire pour une seule séquence
 d’amplicon variable (ASV), comme on peut le voir à gauche.
@@ -589,6 +602,8 @@ pslog <- transform_sample_counts(ps, function(x) log(1 + x))
 
 ### Commentaire : Nous retirons également les échantillons de moins de 1000 lectures.
 
+### Commentaire : On a utilisé la fonction prune\_samples qui permet d’élaguer/filtrer les échantillons indésirables en définissant ceux que nous souhaitons conserver.
+
 ``` r
 out.pcoa.log <- ordinate(pslog,  method = "MDS", distance = "bray")
 evals <- out.pcoa.log$values[,1]
@@ -598,7 +613,7 @@ plot_ordination(pslog, out.pcoa.log, color = "age_binned",
   coord_fixed(sqrt(evals[2] / evals[1]))
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-44-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-43-1.png)<!-- -->
 \#\#\# Commentaire : Nous faisons une analyse des coordonnées
 principales (PCoA) en utilisant l’indice de dissimilitude de
 Bray-Curtis, entre les échantillons. Nous pouvons observer sur le
@@ -616,7 +631,7 @@ plot_ordination(pslog, out.dpcoa.log, color = "age_binned", label= "SampleID",
   coord_fixed(sqrt(evals[2] / evals[1]))
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-45-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-44-1.png)<!-- -->
 \#\#\# Commentaire : Par la suite nous effectuons une analyse de
 coordonnées principales double (DPCoA) cette fois-ci, cela fournit une
 représentation en bioplots des échantillons et des catégories
@@ -629,10 +644,12 @@ plot_ordination(pslog, out.dpcoa.log, type = "species", color = "Phylum") +
   coord_fixed(sqrt(evals[2] / evals[1]))
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-46-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-45-1.png)<!-- -->
 \#\#\# Commentaire : Nous avons pu identifier via la graphique
 ci-dessus, les taxons responsabes des axes 1 et 2, comme on l’a pu voir
 précédemment.
+
+### Commentaire : On a utilisé la fonction plot\_ordination(), pour effectuer un graphique d’ordination de phyloSeq.
 
 ``` r
 out.wuf.log <- ordinate(pslog, method = "PCoA", distance ="wunifrac")
@@ -650,13 +667,13 @@ plot_ordination(pslog, out.wuf.log, color = "age_binned",
   labs(col = "Binned Age", shape = "Litter")
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-47-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-46-1.png)<!-- -->
 \#\#\# Commentaire : Ici on a effectué une analyse des coordonnées
 principales (PCoA) en utilisant Unifrac pondéré entre les échantillons.
 Comme précédemment, nous voyons que le deuxième axe est associé à un
 effet de l’âge, qui est assez similaire à celui du PCoA. Cela est tout à
-fait normal, car dans les deux méthodes d’ordination pennent en compte
-l’abondance. Mais on a pu voir que la méthode DPCoA a donné une
+fait normal, car dans les deux méthodes d’ordination, ils pennent en
+compte l’abondance. Mais on a pu voir que la méthode DPCoA a donné une
 représentation et une interprétation des résultats beaucoup plus nette
 pour la partie de l’axe 2.
 
@@ -748,7 +765,7 @@ ggplot(abund_df %>%
   scale_color_brewer(palette = "Set2")
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-50-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-49-1.png)<!-- -->
 \#\#\# Commentaire : Ici on a transformé le seuil de classement des
 échantillons. Au niveau du graphique, on peut voir que pour certains
 échantillons on a une association entre l’abondance et le rang.
@@ -814,7 +831,7 @@ ggplot() +
   theme(panel.border = element_rect(color = "#787878", fill = alpha("white", 0)))
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-51-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-50-1.png)<!-- -->
 \#\#\# Commentaire : On voit que le biplot ci-dessus montre des
 résultats similaires après la transformation des échantillons effectuée
 précédemment. Les auteurs ont même suggérés que “cela renforce leur
@@ -869,18 +886,22 @@ ggplot() +
   theme(panel.border = element_rect(color = "#787878", fill = alpha("white", 0)))
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-53-1.png)<!-- -->
-\#\#\# Commentaire : Ici sur le biplot on peut observer qu’on a un score
-de souris et de bactéries générés via CCpna. Nous pouvons observer que
-certains ordres ressort plus majoritairement par rapport à d’autres. Par
-exemple, on peut voir que l’ordre Clostridiales est en majorité, mais
-également regroupé avec certaines espèces bactériennes isolées.
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-52-1.png)<!-- -->
+\#\#\# Commentaire : Ici sur le biplot, on peut observer qu’on a un
+score de souris et de bactéries générés via CCpna. Nous pouvons observer
+que certains ordres ressort plus majoritairement par rapport à d’autres.
+Par exemple, on peut voir que l’ordre Clostridiales est en majorité,
+mais également regroupé avec certaines espèces bactériennes isolées.
+
+### Commentaire : Par exemple, on a utilisé ici ggplot() pour déclarer la trame de données d’entrée de graphique.
 
 ## Supervised learning
 
 ``` r
 library(lattice)
 ```
+
+### Commentaire : on a rechargé la package lattice.
 
 ``` r
 library(caret)
@@ -912,6 +933,8 @@ table(plsClasses, testing$age)
 ``` r
 library(ggplot2)
 ```
+
+### Commentaire : on a rechargé la package ggplot2.
 
 ``` r
 library(randomForest)
@@ -958,6 +981,8 @@ table(rfClasses, testing$age)
 library(permute)
 ```
 
+### Commentaire : on a rechargé la package permute.
+
 ``` r
 library(vegan)
 ```
@@ -970,6 +995,8 @@ library(vegan)
     ## The following object is masked from 'package:caret':
     ## 
     ##     tolerance
+
+### Commentaire : on a rechargé la package vegan.
 
 ``` r
 pls_biplot <- list("loadings" = loadings(plsFit$finalModel),
@@ -1000,7 +1027,7 @@ ggplot() +
   theme(panel.border = element_rect(color = "#787878", fill = alpha("white", 0)))
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-61-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-60-1.png)<!-- -->
 \#\#\# Commentaire : Pour continuer l’exemple, on a fait un biplot pour
 séparer les échantillons par une variable de réponse.La différence ici
 par rapport au graphique d’ordination c’est qu’on a identifié un
@@ -1018,7 +1045,7 @@ ggplot(rf_prox) +
   labs(col = "Binned Age", x = "Axis1", y = "Axis2")
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-62-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-61-1.png)<!-- -->
 \#\#\# Commentaire : On continue toujours avec l’exemple. Afin de
 produire le graphique ci-dessous, une distance est calculée entre les
 échantillons en prenant en compte la fréquence de répartition des
@@ -1042,7 +1069,7 @@ ggplot(maxImpDF) +   geom_histogram(aes(x = abund)) +
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-64-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-63-1.png)<!-- -->
 \#\#\# Commentaire : Ici on a pu identifier le microbe qui a le plus
 d’influence dans la prédiction de la forêt aléatoire. Ce microbe fait
 partie de la famille des Lachnospiraceae et du genre Roseburia. Dans le
@@ -1129,10 +1156,10 @@ ggplot(net_graph, aes(x = x, y = y, xend = xend, yend = yend), layout = "fruchte
   guides(col = guide_legend(override.aes = list(size = .5)))
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-68-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-67-1.png)<!-- -->
 \#\#\# Commentaire : Ici on a créer un réseau avec un seuil de matrice
 de dissimilarité Jaccard. Les différentes formes correspondent aux
-litières (1 et 2) et les couleurs correspondent aux différentes souris.
+portées (1 et 2) et les couleurs correspondent aux différentes souris.
 On peut observer dans ce réseau qu’il y a un regroupement
 d’échantillons.
 
@@ -1155,7 +1182,7 @@ plotPerm1=plot_permutations(gt)
 grid.arrange(ncol = 2,  plotNet1, plotPerm1)
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-70-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-69-1.png)<!-- -->
 \#\#\# Commentaire : On veut savoir si les deux portées proviennent de
 la même distribution. Pour se faire, on effectue un test en utilisant
 MST et l’indice de dissimilarité Jaccard. En gardant la structure des
@@ -1176,7 +1203,7 @@ plotPerm2=plot_permutations(gt)
 grid.arrange(ncol = 2,  plotNet2, plotPerm2)
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-72-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-71-1.png)<!-- -->
 \#\#\# Commentaire : Ici on a effectué un réseau de plus proche voisin,
 k-nearest, et l’histogramme de permutation. Le réseau montre que si une
 paire d’échantillon est relié entre eux, cela veut dire qu’il son des
@@ -1267,7 +1294,7 @@ ggplot(ps_samp %>% left_join(new_data)) +
 
     ## Joining, by = c("host_subject_id", "age_binned")
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-77-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-76-1.png)<!-- -->
 \#\#\# Commentaire : Nous avons effectué ici une modélisation linéaire.
 On a pris comme exemple, un modèle à effet mixte, afin d’étudier la
 relation entre la diversité de la communauté microbienne de souris et
@@ -1419,7 +1446,7 @@ ggplot(abund_sums) +
   xlab("Total abundance within sample")
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-83-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-82-1.png)<!-- -->
 \#\#\# Commentaire : Ici on a construit un histogramme qui donne
 l’abondance totale dans chaque échantillon. On a deux histogrammes :
 celui d’en haut c’est avec DESeq2 et l’autre en-dessous c’est avec le
@@ -1444,16 +1471,16 @@ unadj_p <- treePValues(el, abund, sample_data(pslog)$age_binned)
 wget https://cran.r-project.org/src/contrib/Archive/structSSI/structSSI_1.1.1.tar.gz
 ```
 
-    ## --2020-12-02 15:09:39--  https://cran.r-project.org/src/contrib/Archive/structSSI/structSSI_1.1.1.tar.gz
+    ## --2020-12-02 18:51:06--  https://cran.r-project.org/src/contrib/Archive/structSSI/structSSI_1.1.1.tar.gz
     ## Resolving cran.r-project.org (cran.r-project.org)... 137.208.57.37
     ## Connecting to cran.r-project.org (cran.r-project.org)|137.208.57.37|:443... connected.
     ## HTTP request sent, awaiting response... 200 OK
     ## Length: 25591 (25K) [application/x-gzip]
-    ## Saving to: ‘structSSI_1.1.1.tar.gz.1’
+    ## Saving to: ‘structSSI_1.1.1.tar.gz.2’
     ## 
-    ##      0K .......... .......... ....                            100% 1.12M=0.02s
+    ##      0K .......... .......... ....                            100% 1.13M=0.02s
     ## 
-    ## 2020-12-02 15:09:39 (1.12 MB/s) - ‘structSSI_1.1.1.tar.gz.1’ saved [25591/25591]
+    ## 2020-12-02 18:51:06 (1.13 MB/s) - ‘structSSI_1.1.1.tar.gz.2’ saved [25591/25591]
 
 ### Commentaire : pour pouvoir effectuer la suite des analyses on a récupérer des données venant d’un site internet, cran.r-project.org. Si on ne change pas de données les résultats ne seront pas similaires à ceux des auteurs.
 
@@ -1480,9 +1507,9 @@ install_local("./structSSI_1.1.1.tar.gz")
 
     ## Skipping 1 packages not available: multtest
 
-    ##      checking for file ‘/tmp/Rtmpr2Ntsi/remotes6907271df8bb/structSSI/DESCRIPTION’ ...  ✓  checking for file ‘/tmp/Rtmpr2Ntsi/remotes6907271df8bb/structSSI/DESCRIPTION’ (363ms)
+    ##      checking for file ‘/tmp/RtmpL0CHHH/remotes6ced5af36656/structSSI/DESCRIPTION’ ...  ✓  checking for file ‘/tmp/RtmpL0CHHH/remotes6ced5af36656/structSSI/DESCRIPTION’ (349ms)
     ##   ─  preparing ‘structSSI’:
-    ##    checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
+    ##      checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
     ##   ─  checking for LF line-endings in source and make files and shell scripts
     ##   ─  checking for empty or unneeded directories
     ## ─  looking to see if a ‘data/datalist’ file should be added
@@ -1597,7 +1624,7 @@ microbe
     ## tax_table()   Taxonomy Table:    [ 20609 taxa by 6 taxonomic ranks ]
     ## phy_tree()    Phylogenetic Tree: [ 20609 tips and 20607 internal nodes ]
 
-### Commentaire : Comme les données utilisées précédemment ne présentaient qu’un seule table, nous utilson de nouvelles données, qui ont été obtenus à partir des liens ci-dessus.Comme vous pouvez le voir on a deux types de données, l’un pour les métabolites (en premier) et l’autres pour les bactéries (en second). On peut voir qu’on a un total de 12 échantillons, avec 6 rangs taxonomiques et 20 607 noeuds internes.
+### Commentaire : Comme les données utilisées précédemment ne présentaient qu’un seule table, nous utilisons de nouvelles données, qui ont été obtenus à partir des liens ci-dessus.Comme vous pouvez le voir on a deux types de données, l’un pour les métabolites (en premier) et l’autres pour les bactéries (en second). On peut voir qu’on a un total de 12 échantillons, avec 6 rangs taxonomiques et 20 607 noeuds internes.
 
 ``` r
 library("genefilter")
@@ -1635,7 +1662,7 @@ dim(metab)
 
     ## [1] 405  12
 
-### Commentaire : En observant le résultats précédemment et celui-ci, on peut voir qu’on a 12 colonnes pour metab et X.Après avoir effectué cela on va comparer les caractéristiques dans des tableaux de données à haute dimension.Pour faire cela, on va appliquer une DPA clairsemée. Cette dernière correspond à une procédure de sélection à différence des méthodes d’ordination effectuées au cours des scripts précédemment.
+### Commentaire : En observant le résultats précédemment et celui-ci, on peut voir qu’on a 12 colonnes pour metab et X. Après avoir effectué cela on va comparer les caractéristiques dans des tableaux de données à haute dimension.Pour faire cela, on va appliquer une DPA clairsemée. Cette dernière correspond à une procédure de sélection à différence des méthodes d’ordination effectuées au cours des scripts précédemment.
 
 ``` r
 library(PMA)
@@ -1702,12 +1729,12 @@ ggplot() +  geom_point(data = sample_info,
        fill = "Feature Type", col = "Sample Type")
 ```
 
-![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-100-1.png)<!-- -->
+![](03_stat-analysisCC1_files/figure-gfm/unnamed-chunk-99-1.png)<!-- -->
 \#\#\# Commentaire : En effet, on a fait une analyse en composantes
-principales ordinaires (ou PCA ordinaire). On mis cela sous forme de
+principales ordinaires (ou PCA ordinaire). On a mis cela sous forme de
 triplot avec des données multiples, comme on peut le voir. On a
 différents types d’échantillons (PD et ST), différentes
-caractéristiques (métabolite et OTU) et différents génotype (souris WT
+caractéristiques (métabolite et OTU) et différents génotypes (souris WT
 et KO ou Knockout).
 
 ### Commentaire : En observant le triplot, on peut comparer les différents échantillons en fonctions des différents paramètres choisis. Par exemple, on peut voir que les échantillons sont séparés quand on se réfère aux types d’échantillons soit PD et ST, qui correspond au différents régimes alimentaires. Un autre exemple : Pour d’autres caractéristiques tel que le métabolite. En effet, on peut voir que les métabolites des souris WT sont assemblés en ligne.
