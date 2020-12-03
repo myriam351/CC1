@@ -1,4 +1,4 @@
-R Notebook
+CC2 Écogénomique - Myriam FERBLANTIER - N°22000007
 ================
 
   - [Workflow for Microbiome Data Analysis: from raw reads to community
@@ -189,35 +189,37 @@ ord.nmds.bray <- ordinate(ps.prop, method="NMDS", distance="bray")
 ```
 
     ## Run 0 stress 0.08043117 
-    ## Run 1 stress 0.08076346 
-    ## ... Procrustes: rmse 0.01062291  max resid 0.03271618 
-    ## Run 2 stress 0.09477284 
-    ## Run 3 stress 0.08616061 
-    ## Run 4 stress 0.089892 
-    ## Run 5 stress 0.0898921 
-    ## Run 6 stress 0.08076345 
-    ## ... Procrustes: rmse 0.01061518  max resid 0.03269139 
-    ## Run 7 stress 0.08616093 
-    ## Run 8 stress 0.08988948 
-    ## Run 9 stress 0.08616061 
-    ## Run 10 stress 0.08616061 
-    ## Run 11 stress 0.08043117 
-    ## ... Procrustes: rmse 1.720233e-06  max resid 3.941785e-06 
+    ## Run 1 stress 0.08616061 
+    ## Run 2 stress 0.08076346 
+    ## ... Procrustes: rmse 0.01062502  max resid 0.03272337 
+    ## Run 3 stress 0.08076345 
+    ## ... Procrustes: rmse 0.01060854  max resid 0.03266955 
+    ## Run 4 stress 0.3698678 
+    ## Run 5 stress 0.08988958 
+    ## Run 6 stress 0.09477283 
+    ## Run 7 stress 0.09478782 
+    ## Run 8 stress 0.08076338 
+    ## ... Procrustes: rmse 0.01049011  max resid 0.03228291 
+    ## Run 9 stress 0.0898916 
+    ## Run 10 stress 0.08076341 
+    ## ... Procrustes: rmse 0.01052045  max resid 0.03238347 
+    ## Run 11 stress 0.1212046 
+    ## Run 12 stress 0.08043117 
+    ## ... Procrustes: rmse 1.032702e-05  max resid 2.153665e-05 
     ## ... Similar to previous best
-    ## Run 12 stress 0.1010632 
-    ## Run 13 stress 0.08989187 
-    ## Run 14 stress 0.08616063 
-    ## Run 15 stress 0.08989265 
-    ## Run 16 stress 0.08043116 
-    ## ... New best solution
-    ## ... Procrustes: rmse 4.169631e-06  max resid 1.056527e-05 
+    ## Run 13 stress 0.08043117 
+    ## ... Procrustes: rmse 4.392127e-06  max resid 9.470398e-06 
     ## ... Similar to previous best
-    ## Run 17 stress 0.08043117 
-    ## ... Procrustes: rmse 3.658694e-06  max resid 8.865144e-06 
-    ## ... Similar to previous best
-    ## Run 18 stress 0.1212047 
-    ## Run 19 stress 0.1010633 
-    ## Run 20 stress 0.08988953 
+    ## Run 14 stress 0.08076337 
+    ## ... Procrustes: rmse 0.01050501  max resid 0.03233141 
+    ## Run 15 stress 0.08616061 
+    ## Run 16 stress 0.1212044 
+    ## Run 17 stress 0.08616062 
+    ## Run 18 stress 0.08076349 
+    ## ... Procrustes: rmse 0.01060464  max resid 0.03266317 
+    ## Run 19 stress 0.1228545 
+    ## Run 20 stress 0.08076341 
+    ## ... Procrustes: rmse 0.01057435  max resid 0.03255895 
     ## *** Solution reached
 
 ### Commentaire : Ici on a transformé les données en proportions appropriées pour les distances Bray-Curtis.
@@ -549,7 +551,7 @@ out.wuf.log <- ordinate(pslog, method = "MDS", distance = "wunifrac")
 ```
 
     ## Warning in UniFrac(physeq, weighted = TRUE, ...): Randomly assigning root as --
-    ## GCAAGCGTTATCCGGAATTACTGGGTGTAAAGGGTGAGTAGGCGGCATGGTAAGCCAGATGTGAAAGCCTTGGGCTTAACCCAAGGATTGCATTTGGAACTATCAAGCTAGAGTACAGGAGAGGAAAGCGGAATTCCTAGTGTAGCGGTGAAATGCGTAGATATTAGGAAGAACACCAGTGGCGAAGGCGGCTTTCTGGACTGAAACTGACGCTGAGGCACGAAAGCGTGGGGAG
+    ## GCGAGCGTTATCCGGATTTATTGGGTTTAAAGGGTGCGCAGGCGGACTCTCAAGTCAGCGGTCAAATCGCGGGGCTCAACCCCGTTCCGCCGTTGAAACTGGGAGCCTTGAGTGCGCGAGAAGTAGGCGGAATGCGTGGTGTAGCGGTGAAATGCATAGATATCACGCAGAACTCCGATTGCGAAGGCAGCCTACCGGCGCGCAACTGACGCTCATGCACGAAAGCGTGGGTATC
     ## -- in the phylogenetic tree in the data you provided.
 
 ``` r
@@ -656,7 +658,7 @@ out.wuf.log <- ordinate(pslog, method = "PCoA", distance ="wunifrac")
 ```
 
     ## Warning in UniFrac(physeq, weighted = TRUE, ...): Randomly assigning root as --
-    ## GCGAGCGTTGTCCGGAATTACTGGGTGTAAAGGGAGCGTAGGCGGGAGAGCAAGTCGACTGTGAAATCTATGGGCTTAACCCATAGCTGCGATCGAAACTGTTCATCTTGAGTGAAGTAGAGGCAGGCGGAATTCCTAGTGTAGCGGTGAAATGCGTAAATATTAGGAGGAACACCAGTGGCGAAGGCGGCCTGCTGGGCTTTAACTGACGCTGAGGCTCGAAAGCGTGGGTAGC
+    ## GCAAGCGTTGTCCGGAATTACTGGGTGTAAAGGGAGCGTAGGCGGGGATGCAAGTTGGGTGTCAAAACTACCGGCTCAACCGATAGTCGCACTCAAAACTGCAGCTCTTGAGTGAAGTAGAGGCAGGCGGAATTCCTAGTGTAGCGGTGAAATGCGTAGATATTAGGAGGAACACCAGTGGCGAAGGCGGCCTGCTGGGCTTTTACTGACGCTGAGGCTCGAAAGTGTGGGGAGC
     ## -- in the phylogenetic tree in the data you provided.
 
 ``` r
@@ -925,8 +927,8 @@ table(plsClasses, testing$age)
 
     ##            
     ## plsClasses  (0,100] (100,400]
-    ##   (0,100]        63         1
-    ##   (100,400]       1        44
+    ##   (0,100]        65         1
+    ##   (100,400]       3        45
 
 ### Commentaire : En utilisant la fonction “predict” on a prédit les différents étiquettes de la classe en comparaison avec les données réelles. Et comme on peut le voir sur le tableau croisé ci-dessus, on a une bonne méthode de prédiction de l’âge.
 
@@ -972,8 +974,8 @@ table(rfClasses, testing$age)
 
     ##            
     ## rfClasses   (0,100] (100,400]
-    ##   (0,100]        64         5
-    ##   (100,400]       0        40
+    ##   (0,100]        68         0
+    ##   (100,400]       0        46
 
 ### Commentaire : En utilisant la méthode précédente, voici un exemple avec des données aléatoires de forêts.
 
@@ -1173,7 +1175,7 @@ gt <- graph_perm_test(ps, "family_relationship", grouping = "host_subject_id",
 gt$pval
 ```
 
-    ## [1] 0.002
+    ## [1] 0.004
 
 ``` r
 plotNet1=plot_test_network(gt) + theme(legend.text = element_text(size = 8),
@@ -1471,16 +1473,16 @@ unadj_p <- treePValues(el, abund, sample_data(pslog)$age_binned)
 wget https://cran.r-project.org/src/contrib/Archive/structSSI/structSSI_1.1.1.tar.gz
 ```
 
-    ## --2020-12-02 18:51:06--  https://cran.r-project.org/src/contrib/Archive/structSSI/structSSI_1.1.1.tar.gz
+    ## --2020-12-03 19:32:06--  https://cran.r-project.org/src/contrib/Archive/structSSI/structSSI_1.1.1.tar.gz
     ## Resolving cran.r-project.org (cran.r-project.org)... 137.208.57.37
     ## Connecting to cran.r-project.org (cran.r-project.org)|137.208.57.37|:443... connected.
     ## HTTP request sent, awaiting response... 200 OK
     ## Length: 25591 (25K) [application/x-gzip]
-    ## Saving to: ‘structSSI_1.1.1.tar.gz.2’
+    ## Saving to: ‘structSSI_1.1.1.tar.gz.5’
     ## 
     ##      0K .......... .......... ....                            100% 1.13M=0.02s
     ## 
-    ## 2020-12-02 18:51:06 (1.13 MB/s) - ‘structSSI_1.1.1.tar.gz.2’ saved [25591/25591]
+    ## 2020-12-03 19:32:07 (1.13 MB/s) - ‘structSSI_1.1.1.tar.gz.5’ saved [25591/25591]
 
 ### Commentaire : pour pouvoir effectuer la suite des analyses on a récupérer des données venant d’un site internet, cran.r-project.org. Si on ne change pas de données les résultats ne seront pas similaires à ceux des auteurs.
 
@@ -1505,11 +1507,18 @@ library(devtools)
 install_local("./structSSI_1.1.1.tar.gz")
 ```
 
+    ## isoband (0.2.2 -> 0.2.3) [CRAN]
+
     ## Skipping 1 packages not available: multtest
 
-    ##      checking for file ‘/tmp/RtmpL0CHHH/remotes6ced5af36656/structSSI/DESCRIPTION’ ...  ✓  checking for file ‘/tmp/RtmpL0CHHH/remotes6ced5af36656/structSSI/DESCRIPTION’ (349ms)
+    ## Installing 1 packages: isoband
+
+    ## Installing package into '/usr/local/lib/R/site-library'
+    ## (as 'lib' is unspecified)
+
+    ##      checking for file ‘/tmp/RtmpUGSaa2/remotes76e94c7aeef7/structSSI/DESCRIPTION’ ...  ✓  checking for file ‘/tmp/RtmpUGSaa2/remotes76e94c7aeef7/structSSI/DESCRIPTION’ (373ms)
     ##   ─  preparing ‘structSSI’:
-    ##      checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
+    ##    checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
     ##   ─  checking for LF line-endings in source and make files and shell scripts
     ##   ─  checking for empty or unneeded directories
     ## ─  looking to see if a ‘data/datalist’ file should be added
