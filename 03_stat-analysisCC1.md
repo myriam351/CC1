@@ -1,4 +1,4 @@
-CC2 Écogénomique - Myriam FERBLANTIER - N°22000007
+CC1 Écogénomique - Myriam FERBLANTIER - N°22000007
 ================
 
   - [Workflow for Microbiome Data Analysis: from raw reads to community
@@ -36,7 +36,7 @@ CC2 Écogénomique - Myriam FERBLANTIER - N°22000007
 load("02_stat-analysis-with-DADA2_FinalENV")
 ```
 
-### Commentaire : ici on a lié les données de Dada2 dans le fichier 02\_stat-analysis à ce fichier pour effectuer la suite des analyses.
+### Commentaire : ici on a lié les données de Dada2 dans le fichier 02\_stat-analysis pour effectuer la suite des analyses.
 
 ``` r
 library(phyloseq); packageVersion("phyloseq")
@@ -1473,16 +1473,16 @@ unadj_p <- treePValues(el, abund, sample_data(pslog)$age_binned)
 wget https://cran.r-project.org/src/contrib/Archive/structSSI/structSSI_1.1.1.tar.gz
 ```
 
-    ## --2020-12-03 19:32:06--  https://cran.r-project.org/src/contrib/Archive/structSSI/structSSI_1.1.1.tar.gz
+    ## --2020-12-04 05:35:53--  https://cran.r-project.org/src/contrib/Archive/structSSI/structSSI_1.1.1.tar.gz
     ## Resolving cran.r-project.org (cran.r-project.org)... 137.208.57.37
     ## Connecting to cran.r-project.org (cran.r-project.org)|137.208.57.37|:443... connected.
     ## HTTP request sent, awaiting response... 200 OK
     ## Length: 25591 (25K) [application/x-gzip]
-    ## Saving to: ‘structSSI_1.1.1.tar.gz.5’
+    ## Saving to: ‘structSSI_1.1.1.tar.gz.9’
     ## 
-    ##      0K .......... .......... ....                            100% 1.13M=0.02s
+    ##      0K .......... .......... ....                            100% 1.12M=0.02s
     ## 
-    ## 2020-12-03 19:32:07 (1.13 MB/s) - ‘structSSI_1.1.1.tar.gz.5’ saved [25591/25591]
+    ## 2020-12-04 05:35:53 (1.12 MB/s) - ‘structSSI_1.1.1.tar.gz.9’ saved [25591/25591]
 
 ### Commentaire : pour pouvoir effectuer la suite des analyses on a récupérer des données venant d’un site internet, cran.r-project.org. Si on ne change pas de données les résultats ne seront pas similaires à ceux des auteurs.
 
@@ -1507,16 +1507,9 @@ library(devtools)
 install_local("./structSSI_1.1.1.tar.gz")
 ```
 
-    ## isoband (0.2.2 -> 0.2.3) [CRAN]
-
     ## Skipping 1 packages not available: multtest
 
-    ## Installing 1 packages: isoband
-
-    ## Installing package into '/usr/local/lib/R/site-library'
-    ## (as 'lib' is unspecified)
-
-    ##      checking for file ‘/tmp/RtmpUGSaa2/remotes76e94c7aeef7/structSSI/DESCRIPTION’ ...  ✓  checking for file ‘/tmp/RtmpUGSaa2/remotes76e94c7aeef7/structSSI/DESCRIPTION’ (373ms)
+    ##      checking for file ‘/tmp/Rtmpgzq8Mm/remotes3366360c548/structSSI/DESCRIPTION’ ...  ✓  checking for file ‘/tmp/Rtmpgzq8Mm/remotes3366360c548/structSSI/DESCRIPTION’ (342ms)
     ##   ─  preparing ‘structSSI’:
     ##    checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
     ##   ─  checking for LF line-endings in source and make files and shell scripts
@@ -1750,6 +1743,6 @@ et KO ou Knockout).
 
 ## Conclusion :
 
-### Au cours de l’application de ces scripts, on a pu avoir qu’à partir de données on pouvait effectuer différents types d’analyses et que cela dépendaient de ce qu’on cherche. On a pu voir qu’on pouvait projeter ces différents analyses de données via des arbres phylogénétiques, des biplots, des triplots, des analyses en réseaux et autres. Il est important de souligné qu’il est important de savoir ce que nous cherchons. Si nous ne le savons pas il sera difficile de décider par quoi nous allons commencer et surtout dans quel but.
+### Au cours de l’application de ces scripts, on a pu avoir qu’à partir de données on pouvait effectuer différents types d’analyses et que cela dépendaient de ce qu’on cherche. On a pu voir qu’on pouvait projeter ces différents analyses de données via des arbres phylogénétiques, des biplots, des triplots, des analyses en réseaux et autres. Il est important de souligner qu’il est important de savoir ce que nous cherchons. Si nous ne le savons pas il sera difficile de décider par quoi nous allons commencer et surtout dans quel but.
 
 ### Via R, j’ai pu comprendre que c’est un outil statistique très important pour l’analyse de nos données.
