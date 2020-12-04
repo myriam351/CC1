@@ -1473,16 +1473,16 @@ unadj_p <- treePValues(el, abund, sample_data(pslog)$age_binned)
 wget https://cran.r-project.org/src/contrib/Archive/structSSI/structSSI_1.1.1.tar.gz
 ```
 
-    ## --2020-12-04 05:35:53--  https://cran.r-project.org/src/contrib/Archive/structSSI/structSSI_1.1.1.tar.gz
+    ## --2020-12-04 20:36:29--  https://cran.r-project.org/src/contrib/Archive/structSSI/structSSI_1.1.1.tar.gz
     ## Resolving cran.r-project.org (cran.r-project.org)... 137.208.57.37
     ## Connecting to cran.r-project.org (cran.r-project.org)|137.208.57.37|:443... connected.
     ## HTTP request sent, awaiting response... 200 OK
     ## Length: 25591 (25K) [application/x-gzip]
-    ## Saving to: ‘structSSI_1.1.1.tar.gz.9’
+    ## Saving to: ‘structSSI_1.1.1.tar.gz.10’
     ## 
     ##      0K .......... .......... ....                            100% 1.12M=0.02s
     ## 
-    ## 2020-12-04 05:35:53 (1.12 MB/s) - ‘structSSI_1.1.1.tar.gz.9’ saved [25591/25591]
+    ## 2020-12-04 20:36:29 (1.12 MB/s) - ‘structSSI_1.1.1.tar.gz.10’ saved [25591/25591]
 
 ### Commentaire : pour pouvoir effectuer la suite des analyses on a récupérer des données venant d’un site internet, cran.r-project.org. Si on ne change pas de données les résultats ne seront pas similaires à ceux des auteurs.
 
@@ -1509,7 +1509,7 @@ install_local("./structSSI_1.1.1.tar.gz")
 
     ## Skipping 1 packages not available: multtest
 
-    ##      checking for file ‘/tmp/Rtmpgzq8Mm/remotes3366360c548/structSSI/DESCRIPTION’ ...  ✓  checking for file ‘/tmp/Rtmpgzq8Mm/remotes3366360c548/structSSI/DESCRIPTION’ (342ms)
+    ##      checking for file ‘/tmp/RtmpjbyndQ/remotes7445996728b/structSSI/DESCRIPTION’ ...  ✓  checking for file ‘/tmp/RtmpjbyndQ/remotes7445996728b/structSSI/DESCRIPTION’ (383ms)
     ##   ─  preparing ‘structSSI’:
     ##    checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
     ##   ─  checking for LF line-endings in source and make files and shell scripts
